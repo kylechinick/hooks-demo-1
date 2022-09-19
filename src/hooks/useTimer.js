@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-function Timer() {
+function useTimer() {
   const [isActive, setIsActive] = useState(false);
   const [timer, setTimer] = useState(0);
 
@@ -16,12 +16,7 @@ function Timer() {
     return () => clearInterval(interval);
   }, [isActive]);
 
-  return (
-    <React.Fragment>
-      {isActive ? <h1>{timer}</h1> : <h1>Timer Stopped</h1>}
-      <button onClick={() => setIsActive(!isActive)}>Start/Stop</button>
-    </React.Fragment>
-  );
+  return [isActive, timer, setIsActive];
 }
 
-export default Timer;
+export default useTimer;
